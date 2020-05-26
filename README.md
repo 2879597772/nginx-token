@@ -115,7 +115,6 @@ end
 	//  
 	echo "<img src='//www.you.com/1.jpg?ts=$ts&token=$token'>"  
 	?>  
-
 ````  
 
 #### 五 js访问受保护的资源
@@ -124,7 +123,6 @@ end
 /*  
 var newUrl = url + "?ts=" + (Math.round(new Date().getTime()/1000)*8+4500001316).toString() + "&token=" + hex_md5((Math.round(new Date().getTime()/1000)).toString() + '123456');
 */  
-
 ````
 
 ##### 此项目为本人做m3u8放盗链播放器时所查，依据网上资料进行整合修改
