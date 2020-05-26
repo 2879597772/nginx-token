@@ -2,7 +2,7 @@
 
 #### 介绍
 通过nginx实现对视频、图片、文件下载的token防盗链  
-windows：带lua的发行版本（个人推荐`openresty/`）  
+windows：带lua的发行版本（个人推荐`openresty`）  
 linux：已编译lua的版本  
 
 #### 注意事项
@@ -12,7 +12,7 @@ linux：已编译lua的版本
 
 ### 脚本介绍
 
-#### 一. 获取当前时间
+#### 一 获取当前时间
 在nginx的server节中加入以下内容
 
 		location /ts {
@@ -22,3 +22,25 @@ linux：已编译lua的版本
 		';
 		}
 
+`ngx.say((ngx.time() *8) + 4500001316 );`  
+意思是将服务器时间*8之后+4500001316  
+可自行修改，但要注意后面也要同步修改  
+访问方法：//www.****.com/ts
+
+#### 二 将请求派给lua处理
+
+		location / {
+		rewrite_by_lua_file '<lua脚本所在位置>';
+            root   <你的请求目录>;
+            index  index.html index.htm;
+        }
+
+#### 三 lua脚本内容
+
+```
+--获取md5值  
+function getMd5(time)  
+    return ngx.md5((time-4521661316)/9 .. '2879597772')  
+end  
+121
+```
