@@ -11,7 +11,7 @@
 #### 操作方法
 HLS.JS自定义分片URL请求  
 感谢CSDN用户“冯金满”  
-`[![csdn-logo]][csdn]`|[![csdn-logo]][csdn]|
+`[![csdn-logo]][csdn]`|[![csdn-logo]][csdn]
 
 
 --------------------------------
