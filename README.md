@@ -6,9 +6,8 @@ windows：带lua的发行版本（个人推荐`openresty`）
 linux：已编译lua的版本  
 
 #### 注意事项
-##### 本教程以及其包含的一切所有人可免费下载，完全开源，开源协议遵照“[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)”，  
-[![image](https://github.com/2879597772/ONT/blob/master/images/CC.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)
-##### 其意思为“知识共享-署名-非商业性-相同方式共享，即此教程共享，转发必须注明作者本人-不允许以各种方法拿此教程获利，此共享协议对中国大陆有效，受中国法律保护！
+##### 本教程以及其包含的一切所有人可免费下载，完全开源，开源协议遵照“[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh)”，  
+[![image](https://github.com/2879597772/ONT/blob/master/images/CC.png)](https://creativecommons.org/licenses/by-sa/4.0/deed.zh)
 
 ### 脚本介绍
 
@@ -83,3 +82,50 @@ ngx.exit(401)
 end  
 -- 因为ur=1，所以通过
 ```  
+
+#### 四 PHP访问受保护的资源
+
+````
+	<?php
+	//token加密  
+	//获取服务器时间  
+		//初始化  
+		$curl = curl_init();  
+		// 跳过证书检查  
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);  
+		// 不从证书中检查SSL加密算法是否存在  
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);  
+		//设置抓取的url  
+		curl_setopt($curl, CURLOPT_URL, "https://www.you.com/token/ts");  
+		//你的网址"https://www.you.com/token/ts"
+		//设置头文件的信息作为数据流输出  
+		curl_setopt($curl, CURLOPT_HEADER, 0);  
+		//设置获取的信息以文件流的形式返回，而不是直接输出。  
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);  
+		//执行命令  
+		$data = curl_exec($curl);  
+		//关闭URL请求  
+		curl_close($curl);  
+		//显示获得的数据  
+		//print_r($data);  
+	//赋值  
+	$ts         = $data ;  
+	$token_time = (($data-4500001316)/8);//时间戳解密  
+	$token      = md5($token_time."123456");//token_md5验证  
+	//  
+	echo "<img src='//www.you.com/1.jpg?ts=$ts&token=$token'>"  
+	?>  
+
+````  
+
+#### 五 js访问受保护的资源
+取自hls.js部分，仅供参考  
+````
+/*  
+var newUrl = url + "?ts=" + (Math.round(new Date().getTime()/1000)*8+4500001316).toString() + "&token=" + hex_md5((Math.round(new Date().getTime()/1000)).toString() + '123456');
+*/  
+
+````
+
+##### 此项目为本人做m3u8放盗链播放器时所查，依据网上资料进行整合修改
+感谢CSDN、Baidu
