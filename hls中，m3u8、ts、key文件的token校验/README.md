@@ -11,9 +11,9 @@
 #### 操作方法
 HLS.JS自定义分片URL请求  
 感谢CSDN用户“冯金满”  
-`[![csdn-logo]][csdn]`|[![csdn-logo]][csdn]
+[![csdn-logo]][csdn1]
 
 
 --------------------------------
 [csdn1]:https://blog.csdn.net/weixin_44453596/article/details/86086784 "简单的视频防盗链"
-[csdn-logo]:https://csdnimg.cn/cdn/content-toolbar/csdn-logo.png "CSDN博客"
+[csdn-logo]:/img/csdn.png "CSDN博客"
